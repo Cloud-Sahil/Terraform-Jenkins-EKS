@@ -45,3 +45,33 @@ su - jenkins
 ## 3. Access Jenkins
 - Jenkins: `http://<jenkins-public-ip>:8080`
   
+## 4. Create Jenkins Pipeline
+1. Go to Dashboard → New Item → Pipeline
+2. Paste the following pipeline code:
+```sh
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Cloud-Sahil/Terraform-Jenkins-EKS.git'
+                sh 'terraform init'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'terraform apply --auto-approve'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "successfully deployed eks through jenkins"
+            }
+        }
+    }
+}
+
+```
+
+## 5. Run the Pipeline
+- Build the job in Jenkins.

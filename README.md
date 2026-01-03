@@ -41,3 +41,7 @@ snap install aws-cli --classic
 su - jenkins
 ```
 ### Aws Configure
+
+## 3. Access Jenkins
+- Jenkins: `http://<jenkins-public-ip>:8080`
+  
